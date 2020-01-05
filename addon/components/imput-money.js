@@ -52,10 +52,6 @@ export default TextField.extend({
     let val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
-
-    if(typeof this.onChange === "function") {
-      this.onChange(val);
-    }
   }),
 
   setUnmaskedValue: observer('value', 'allowDecimal', function() {
@@ -63,6 +59,10 @@ export default TextField.extend({
       this.set('number', this.$().maskMoney('unmasked')[0]);
     } else {
       this.set('number', this.get('value').replace(/[^0-9]/g, ''));
+    }
+
+    if(typeof this.onChange === "function") {
+      this.onChange(this.get('number'));
     }
   }),
 
