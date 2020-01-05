@@ -52,7 +52,10 @@ export default TextField.extend({
     let val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
-    this.onChange();
+
+    if(typeof this.onChange === "function") {
+      this.onChange(val);
+    }
   }),
 
   setUnmaskedValue: observer('value', 'allowDecimal', function() {
