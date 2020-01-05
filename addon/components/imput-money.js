@@ -52,6 +52,7 @@ export default TextField.extend({
     let val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
+    this.onChange();
   }),
 
   setUnmaskedValue: observer('value', 'allowDecimal', function() {
@@ -60,5 +61,7 @@ export default TextField.extend({
     } else {
       this.set('number', this.get('value').replace(/[^0-9]/g, ''));
     }
-  })
+  }),
+
+  onChange: function() {},
 });
